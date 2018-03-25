@@ -4,8 +4,8 @@ from discord.ext.commands import Bot
 from datetime import datetime
 
 
-TOKEN = 'NDI2MTY3Njg4NTcwNjAxNDcy.DZSDWg.60FYFUkbSBJM8U-_KS0NuiNJ9hg'
-HEADERS = {'TRN-Api-Key': 'e730eba1-0f3b-4f9d-9f33-7c3e1fcb250a'}
+TOKEN = 'Client Token'
+HEADERS = {'TRN-Api-Key': 'key}
 
 client = Bot(command_prefix="!")
 
