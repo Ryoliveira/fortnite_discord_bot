@@ -5,7 +5,7 @@ from datetime import datetime
 
 
 TOKEN = 'Client Token'
-HEADERS = {'TRN-Api-Key': 'key}
+HEADERS = {'TRN-Api-Key': 'key'}
 
 client = Bot(command_prefix="!")
 
