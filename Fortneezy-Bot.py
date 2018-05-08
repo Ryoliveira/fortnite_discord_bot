@@ -74,6 +74,26 @@ async def solo_season(user: str):
 
 
 @client.command()
+async def solo_season3(user: str):
+    """Display Season 3 Solo Stats \ !solo_season 'username'"""
+    player_data = await pull_stats(user)
+    try:
+        solo_s = player_data['stats']['prior_p2']
+        stats = io.StringIO()
+        stats.write("Account: " + user + "  Platform: " + player_data['platformNameLong'])
+        stats.write("\n==Season 3 Solo Stats==")
+        stats.write("\nMatches Played: " + solo_s['matches']['value'] +
+                    "  ||  Wins: " + solo_s['top1']['value'] +
+                    "  ||  Win Percentage: " + "%.2f" % ((solo_s['top1']['valueInt'] /
+                                                          solo_s['matches']['valueInt']) * 100) + "%")
+        stats.write("\nKills: " + solo_s['kills']['value'] +
+                    "  ||  KDR: " + solo_s['kd']['value'] + "%")
+        await client.say(stats.getvalue())
+    except KeyError:
+        await error_print(user)
+
+
+@client.command()
 async def duo(user: str):
     """Display Lifetime Due Stats \ !duo 'username'"""
     player_data = await pull_stats(user)
@@ -95,13 +115,33 @@ async def duo(user: str):
 
 @client.command()
 async def duo_season(user: str):
-    """Display Current Season Due Stats \ !duo_season 'username'"""
+    """Display Current Season Duo Stats \ !duo_season 'username'"""
     player_data = await pull_stats(user)
     try:
         duo_S = player_data['stats']['curr_p10']
         stats = io.StringIO()
         stats.write("Account: " + user + "  Platform: " + player_data['platformNameLong'])
         stats.write("\n==Current Season Duo Stats==")
+        stats.write("\nMatches Played: " + duo_S['matches']['value'] +
+                    "  ||  Wins: " + duo_S['top1']['value'] +
+                    "  ||  Win Percentage: " + "%.2f" % ((duo_S['top1']['valueInt'] /
+                                                          duo_S['matches']['valueInt']) * 100) + "%")
+        stats.write("\nKills: " + duo_S['kills']['value'] +
+                    "  ||  KDR: " + duo_S['kd']['value'] + "%")
+        await client.say(stats.getvalue())
+    except KeyError:
+        await error_print(user)
+
+
+@client.command()
+async def duo_season3(user: str):
+    """Display Season 3 Duo Stats \ !duo_season 'username'"""
+    player_data = await pull_stats(user)
+    try:
+        duo_S = player_data['stats']['prior_p10']
+        stats = io.StringIO()
+        stats.write("Account: " + user + "  Platform: " + player_data['platformNameLong'])
+        stats.write("\n==Season 3 Duo Stats==")
         stats.write("\nMatches Played: " + duo_S['matches']['value'] +
                     "  ||  Wins: " + duo_S['top1']['value'] +
                     "  ||  Win Percentage: " + "%.2f" % ((duo_S['top1']['valueInt'] /
@@ -140,6 +180,27 @@ async def squad_season(user: str):
     player_data = await pull_stats(user)
     try:
         squad_S = player_data['stats']['curr_p9']
+        stats = io.StringIO()
+        stats.write("\nAccount: " + user + "  Platform: " + player_data['platformNameLong'])
+        stats.write("\n==Current Season Squad Stats==")
+        stats.write("\nMatches Played: " + squad_S['matches']['value'] +
+                    "  ||  Wins: " + squad_S['top1']['value'] +
+                    "  ||  Win Percentage: " + "%.2f" % ((squad_S['top1']['valueInt'] /
+                                                          squad_S['matches']['valueInt']) * 100) + "%")
+
+        stats.write("\nKills: " + squad_S['kills']['value'] +
+                    "  ||  KDR: " + squad_S['kd']['value'] + "%")
+        await client.say(stats.getvalue())
+    except KeyError:
+        await error_print(user)
+
+
+@client.command()
+async def squad_season3(user: str):
+    """Display Season 3 Squad Stats \ !squad_season3 'username'"""
+    player_data = await pull_stats(user)
+    try:
+        squad_S = player_data['stats']['prior_p9']
         stats = io.StringIO()
         stats.write("\nAccount: " + user + "  Platform: " + player_data['platformNameLong'])
         stats.write("\n==Current Season Squad Stats==")
